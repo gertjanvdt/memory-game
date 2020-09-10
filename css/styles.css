@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+.player {
+  width: 150px;
+  height: 150px;
+  margin: 1em;
+}
+
+.turn {
+  background: tomato;
+}
+
+.player-board > div {
+  flex: 1;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.card-container,
+.player-board {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
+}
+
+.card {
+  margin: 1em;
+  background: blueviolet;
+  height: 150px;
+  width: 150px;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 5px;
+  background: lightblue;
+  opacity: 0.8;
+}
+
+#next-try {
+  width: 15em;
+  height: 3em;
+  border-radius: 8px;
+}
+
+.hidden {
+  display: none;
+}
