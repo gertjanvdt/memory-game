@@ -5,27 +5,55 @@ let player1Score = document.getElementById("player1-score");
 let resultText = document.querySelector(".message");
 const overlay = document.querySelector(".message-container");
 const nextTurn = document.getElementById("next-try");
+let playerInput = document.getElementById("player-amount").value;
+const nextButton = document.getElementById("next");
+const step1 = document.getElementById("step1");
+const step2 = document.getElementById("step2");
 let imagesClicked = 0;
 let playerScore = 0;
 let correctGuesses = 0;
+let cardsToPlay = 16;
 let winner = "";
-
 let img1;
 
-const imagesPath = [
-  "img/bear.jpg",
-  "img/buffelo.jpg",
-  "img/cat.jpg",
-  "img/elephant.jpg",
-  "img/hippo.jpg",
-  "img/koala.jpg",
-  "img/lion.jpg",
-  "img/monkey.jpg",
-];
+// Phase 1 - Randomized images to gues and if match give point if all cards are choosen, game ends
 
 // ***** FUNCTIONS *****
 
+// function to set each set of the matching image
+function setRandomImage() {
+  // Object with info about the imgage and random order number
+  const imagesPath = [
+    { img: "img/bear.jpg", number: randomNumber(), id: 1 },
+    { img: "img/buffelo.jpg", number: randomNumber(), id: 2 },
+    { img: "img/cat.jpg", number: randomNumber(), id: 3 },
+    { img: "img/elephant.jpg", number: randomNumber(), id: 4 },
+    { img: "img/hippo.jpg", number: randomNumber(), id: 5 },
+    { img: "img/koala.jpg", number: randomNumber(), id: 6 },
+    { img: "img/lion.jpg", number: randomNumber(), id: 7 },
+    { img: "img/monkey.jpg", number: randomNumber(), id: 8 },
+  ];
+  // Set the images in order from lowest to highest number to get a ramdom order of images
+  const imageList = imagesPath.sort((a, b) => (a.number > b.number ? 1 : -1));
+
+  // Loop through the randomized ordered list of images and create div and img element with relevant data
+  for (let i = 0; i < cardsToPlay / 2; i++) {
+    const cardDiv = document.createElement("div");
+    cardDiv.className = "card";
+    const imgNode = document.createElement("img");
+    imgNode.src = imageList[i].img;
+    imgNode.className = "hidden";
+    imgNode.id = imageList[i].id;
+    cardDiv.appendChild(imgNode);
+    cardContainer.appendChild(cardDiv);
+  }
+}
+
 // Function to set images randomly
+function randomNumber() {
+  const number = Math.floor(Math.random() * 100);
+  return number;
+}
 
 // Function on click
 function onClick(e) {
@@ -108,8 +136,6 @@ function gameEnd() {
   for (let i = 0; i < images.length; i++) {
     images[i].className = "hidden";
   }
-
-  console.log("game end function");
 }
 
 // Function to show winner or draw screen upon end game
@@ -130,9 +156,49 @@ nextTurn.addEventListener("click", (e) => {
   overlay.classList.add("hidden");
 });
 
+document.createElement(setRandomImage());
+document.createElement(setRandomImage());
+
 // Whislist
-// Choose amount of players and add name
-// Choose amount of cards to play with
+// ===============
+// Phase 2
+// ===============
+
+// 1) Choose amount of players and add name
+
+nextButton.addEventListener("click", (e) => {
+  playerInput = document.getElementById("player-amount").value;
+  if (playerInput !== "select") {
+    step1.classList.add("hidden");
+    step2.classList.remove("hidden");
+    setPLayerInput();
+  } else {
+    const warning = document.createElement("h3");
+    warning.innerHTML = "PLEASE SELECT A NUMBER OF PLAYERS";
+    warning.classList = "warning";
+    step1.appendChild(warning);
+  }
+});
+
+// ***** FUNCTIONS ******
+
 // Input player name up to 4 players
+function setPLayerInput() {
+  for (let i = 0; i < parseInt(playerInput); i++) {
+    let input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = `Name of player ${i + 1}`;
+    const playerNames = document.getElementById("player-names");
+    playerNames.appendChild(input);
+  }
+}
+
+// Back button go back to player selection
+
+// Check if players selected, otherwise display error
+
 // Rotate turns with up to 4 players
+
+// Phase 3
 // Ad max amount of tries before failing
+// Choose amount of cards to play with

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chilanka&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -36,74 +37,42 @@
 
     <body>
         <div class="card-container">
-
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="1" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="2" alt="">
-            </div>            
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="3" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="4" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="5"  alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="6"  alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="7" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="8" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="1"  alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="2" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="3" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="4" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="5" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="6" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="7" alt="">
-            </div>
-            <div class="card">
-                <img src="img/bear.jpg" class="hidden" id="8" alt="">
-            </div>
-
-
+            <!-- JAVASCRIPT WILL CREATE IMG CONTAINER AND IMG -->
         </div>
-        <div class="message-container hidden">
+        <div class="message-container overlay hidden">
             <h1 class="message">YOUR GUESS WAS CORRECT</h1>
-            <button id="next-try">NEXT TURN</button>
+            <button id="next-try" class="btn">NEXT TURN</button>
         </div>
 
-        <div class="start-screen hidden ">
-            <h1>SELECT THE NUMBER OF PLAYERS</h1>
-            <select name="number-of-players" id="player-amount">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-
-            <div class="name-input">
-
+        <div class="start-screen overlay ">
+            <div id="step1" class="step">
+                <h1>SELECT THE NUMBER OF PLAYERS</h1>
+                <select name="number-of-players" id="player-amount">
+                    <option value="select" disabled selected>Select number of players</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+    
+                <!-- <h1>Select the number of cards</h1>
+                <select name="number-of-cards" id="card-amount">
+                    <option value="select" disabled selected>Select number of cards</option>
+                    <option value="8">8</option>
+                    <option value="16">16</option>
+                    <option value="32">32</option>
+                </select> -->
+    
+                <button id="next" class="btn">NEXT</button>
+            </div>
+            <div id="step2" class="step hidden">
+                <h1>ENTER PLAYER NAME(S)</h1>
+                
+                <div id="player-names">
+                    <!-- JAVASCRIPT WILL CREATE INPUT FIELDS BASED IN NUMBER OF PLAYERS -->
+                </div>
+                <button id="back" class="btn"> &#xab BACK</button>
+                <button id="start" class="btn">START! &#xbb; </button>
             </div>
         </div>
     <script src="app.js"></script>

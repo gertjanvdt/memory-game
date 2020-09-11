@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Chilanka", cursive;
 }
 
 h1 {
@@ -36,7 +37,7 @@ h1 {
   width: 150px;
 }
 
-.message-container {
+.overlay {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -52,10 +53,30 @@ h1 {
   opacity: 0.8;
 }
 
-#next-try {
+.btn,
+#player-amount,
+input {
   width: 15em;
   height: 3em;
   border-radius: 8px;
+  margin: 0.5em;
+  outline: none;
+  text-align-last: center;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#player-names {
+  display: flex;
+  flex-direction: column;
+}
+
+.warning {
+  color: red;
 }
 
 .hidden {
