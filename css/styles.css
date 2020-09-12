@@ -17,14 +17,14 @@ h1 {
   background: tomato;
 }
 
-.player-board > div {
+.player-board-container > div {
   flex: 1;
   text-align: center;
   border: 1px solid black;
 }
 
 .card-container,
-.player-board {
+.player-board-container {
   display: grid;
   grid-template-columns: repeat(4, auto);
   justify-content: center;
@@ -70,7 +70,7 @@ input {
   align-items: center;
 }
 
-#player-names {
+#player-names-container {
   display: flex;
   flex-direction: column;
 }
