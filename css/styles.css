@@ -3,14 +3,27 @@
   font-family: "Chilanka", cursive;
 }
 
+body {
+  background: lightblue;
+}
+
 h1 {
   text-align: center;
 }
 
+h2,
+h3 {
+  margin: 0;
+}
+
 .player {
   width: 150px;
-  height: 150px;
+  height: 75px;
   margin: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .turn {
@@ -32,7 +45,7 @@ h1 {
 
 .card {
   margin: 1em;
-  background: blueviolet;
+  background: #696969;
   height: 150px;
   width: 150px;
 }
@@ -50,7 +63,7 @@ h1 {
   right: 0;
   border-radius: 5px;
   background: lightblue;
-  opacity: 0.8;
+  /* opacity: 0.8; */
 }
 
 .btn,

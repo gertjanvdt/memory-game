@@ -188,16 +188,16 @@ function setPLayerInput() {
   }
 }
 
-function setWarning() {
-  const warning = document.createElement("h3");
-  warning.innerHTML = "PLEASE SELECT A NUMBER OF PLAYERS";
-  warning.classList = "warning";
-  step1.appendChild(warning);
+function setWarning(message, step) {
+  const warning = document.querySelector(".warning");
+  warning.classList.remove("hidden");
+  warning.innerHTML = message;
+  step.appendChild(warning);
 }
 
 const warningIsSet = () => {
-  const warning = document.querySelector(".warning");
-  if (warning === null) {
+  const warning = document.querySelector(".warning-container");
+  if (warning.classList.contains("hidden")) {
     return false;
   } else {
     return true;
@@ -211,6 +211,8 @@ function removePlayerInputs() {
 }
 
 // Rotate turns with up to 4 players
+
+// Function to create the players in the game after input
 class Player {
   constructor(playerName, playerScore, isTurn, isWinner) {
     this.playerName = playerName;
@@ -219,19 +221,20 @@ class Player {
     this.isWinner = isWinner;
   }
 }
-// Function to create the players in the game after input
+
 const playersObject = () => {
   const playerInputs = document.getElementsByClassName("playerName");
   const gamePlayers = [];
   for (let i = 0; i < playerInputs.length; i++) {
-    gamePlayers.push(new Player(playerInputs[i].value, 0, false, false));
+    gamePlayers.push(
+      new Player(playerInputs[i].value, 0, i === 0 ? true : false, false)
+    );
   }
   return gamePlayers;
 };
 
 function createPlayersScreen(players) {
   playerContainer = document.querySelector(".player-board-container");
-  console.log(players);
   for (let i = 0; i < players.length; i++) {
     const div = document.createElement("div");
     div.classList.add("player");
@@ -245,6 +248,21 @@ function createPlayersScreen(players) {
   }
 }
 
+function checkPlayerEmpty() {
+  const inputs = document.getElementsByClassName("playerName");
+  let inputEmpty = true;
+  for (let i = 0; i < inputs.length; i++) {
+    console.log(inputs[i].textContent);
+    if (inputs[i].value === "") {
+      inputEmpty = true;
+      break;
+    } else {
+      inputEmpty = false;
+    }
+  }
+  return inputEmpty;
+}
+
 // ***** EVENT LISTENERS *****
 
 // When player chooses amount of players and goes to next step
@@ -254,10 +272,9 @@ nextButton.addEventListener("click", (e) => {
     step1.classList.add("hidden");
     step2.classList.remove("hidden");
     setPLayerInput();
-    // Check if players selected, otherwise display error
-    // fix the issue that warning appear multiple times when clicking next
+    // Check if players selected, otherwise display error unless warning is already there
   } else if (warningIsSet() === false) {
-    setWarning();
+    setWarning("PLEASE SELECT A NUMBER OF PLAYERS", step1);
   }
 });
 
@@ -269,8 +286,12 @@ backButton.addEventListener("click", (e) => {
 });
 
 startButton.addEventListener("click", (e) => {
-  createPlayersScreen(playersObject());
-  startScreen.classList.add("hidden");
+  if (checkPlayerEmpty()) {
+    setWarning("PLEASE ENTER ALL PLAYER NAMES", step2);
+  } else {
+    createPlayersScreen(playersObject());
+    startScreen.classList.add("hidden");
+  }
 });
 
 // Phase 3

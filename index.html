@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+
     <header>
         <div>
             <h1>FUN MEMORY GAME!</h1>    
@@ -16,10 +16,7 @@
         <div class="player-board-container">
             <!-- JAVASCRIPT WILL INSET PLAYERS -->
         </div>
-
- 
     </header>
-
     <body>
         <div class="card-container">
             <!-- JAVASCRIPT WILL CREATE IMG CONTAINER AND IMG -->
@@ -48,7 +45,7 @@
                     <option value="32">32</option>
                 </select> -->
     
-                <button id="next" class="btn">NEXT</button>
+                <button id="next" class="btn">NEXT &#xbb; </button>
             </div>
             <div id="step2" class="step hidden">
                 <h1>ENTER PLAYER NAME(S)</h1>
@@ -59,7 +56,10 @@
                 <button id="back" class="btn"> &#xab BACK</button>
                 <button id="start" class="btn">START! &#xbb; </button>
             </div>
+            <div class="warning-container hidden">
+                <h3 class="warning">THIS IS THE WARNING TEXT</h3>
+            </div>
         </div>
-    <script src="app.js"></script>
-</body>
+        <script src="app.js"></script>
+    </body>
 </html>
